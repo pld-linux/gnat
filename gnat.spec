@@ -1,7 +1,7 @@
 Summary:	GNAT Ada 95 Compiler
 Name:		gnat
 Version:	3.15p
-Release:	0.1
+Release:	0.2
 Epoch:		0
 License:	GPL v2
 Group:		Development/Languages
@@ -15,7 +15,6 @@ Source1:	http://libre.act-europe.fr/GNAT/%{version}/%{name}-%{version}-sparc-sun
 #Source10:	http://libre.act-europe.fr/GNAT/%{version}/%{name}-%{version}-unx-docs.tar.gz
 #Source11:	http://libre.act-europe.fr/GNAT/%{version}/%{name}-%{version}-src.tgz
 URL:		http://libre.act-europe.fr/GNAT/main.html
-#BuildRequires:	-
 Requires(post,postun):	/sbin/ldconfig
 #Requires:	-
 #Provides:	-
@@ -24,6 +23,7 @@ Requires(post,postun):	/sbin/ldconfig
 ExclusiveArch:	i686 sparc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_prefix		/opt/gnat
 %define		_gcclib		%{_prefix}/lib/gcc-lib
 
 %description
@@ -47,15 +47,29 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} ins-all \
 	prefix=$RPM_BUILD_ROOT%{_prefix}
 
-rm -rf $RPM_BUILD_ROOT%{_bindir}/{.gnat_wrapper,addr2line,g*,real/{gcc,gvd}}
-mv $RPM_BUILD_ROOT%{_bindir}{/real/*,}
-rm -rf $RPM_BUILD_ROOT%{_bindir}/real
+rm -rf $RPM_BUILD_ROOT%{_prefix}/doc
+rm -rf $RPM_BUILD_ROOT%{_prefix}/bin/{{,real/}gvd,gnathtml.pl}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.txt README.TASKING
-%attr(755,root,root) %{_bindir}/*
-%{_gcclib}/*/2.8.1
+%dir %{_prefix}
+%dir %{_bindir}
+%dir %{_bindir}/real
+%attr(755,root,root) %{_bindir}/.gnat_wrapper
+%attr(755,root,root) %{_bindir}/addr2line
+%attr(755,root,root) %{_bindir}/g*
+%attr(755,root,root) %{_bindir}/real/*
+%dir %{_prefix}/lib/gcc-lib/*/2.8.1
+%{_prefix}/lib/gcc-lib/*/2.8.1/adainclude
+%{_prefix}/lib/gcc-lib/*/2.8.1/adalib
+%{_prefix}/lib/gcc-lib/*/2.8.1/include
+%{_prefix}/lib/gcc-lib/*/2.8.1/rts-fsu
+%{_prefix}/lib/gcc-lib/*/2.8.1/rts-native
+%{_prefix}/lib/gcc-lib/*/2.8.1/*.[ao]
+%attr(755,root,root) %{_prefix}/lib/gcc-lib/*/2.8.1/cc1
+%attr(755,root,root) %{_prefix}/lib/gcc-lib/*/2.8.1/cpp
+%attr(755,root,root) %{_prefix}/lib/gcc-lib/*/2.8.1/gnat1
+%{_prefix}/lib/gcc-lib/*/2.8.1/specs
