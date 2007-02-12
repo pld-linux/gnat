@@ -1,5 +1,5 @@
 Summary:	GNAT Ada 95 Compiler
-Summary(pl):	GNAT - kompilator jêzyka Ada 95
+Summary(pl.UTF-8):   GNAT - kompilator jÄ™zyka Ada 95
 Name:		gnat
 Version:	3.15p
 Release:	0.2
@@ -25,8 +25,8 @@ GNAT is a complete Ada 95 compilation system, maintained and
 distributed under the GNU General Public License by Ada Core
 Technologies.
 
-%description -l pl
-GNAT to kompletny system kompilatora dla jêzyka Ada 95, utrzymywany i
+%description -l pl.UTF-8
+GNAT to kompletny system kompilatora dla jÄ™zyka Ada 95, utrzymywany i
 rozpowszechniany na licencji GNU GPL przez Ada Core Technologies.
 
 %prep
