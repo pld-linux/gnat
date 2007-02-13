@@ -1,5 +1,5 @@
 Summary:	GNAT Ada 95 Compiler
-Summary(pl.UTF-8):   GNAT - kompilator języka Ada 95
+Summary(pl.UTF-8):	GNAT - kompilator języka Ada 95
 Name:		gnat
 Version:	3.15p
 Release:	0.2
